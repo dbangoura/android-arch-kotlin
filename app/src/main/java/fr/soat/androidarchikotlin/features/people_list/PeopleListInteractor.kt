@@ -8,7 +8,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 class PeopleListInteractor(peopleRepository: PeopleRepository) : BaseInteractor(peopleRepository) {
-    fun getpeopleAtPage(page: Int, callback: PeopleListCallback) {
+    fun getPeopleAtPage(page: Int, callback: PeopleListCallback) {
         peopleRepository.getPeopleAtPage(page, object : Callback<PeopleListResult> {
             override fun onResponse(call: Call<PeopleListResult>, response: Response<PeopleListResult>) {
                 if (response?.isSuccessful) callback.onPeopleListSuccess(response.body()!!)

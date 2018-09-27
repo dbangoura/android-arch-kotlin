@@ -6,11 +6,11 @@ import fr.soat.androidarchikotlin.features.base.BasePresenterImpl
 
 class PeopleListPresenter: BasePresenterImpl<PeopleListContract.View>(), PeopleListContract.Presenter, PeopleListInteractor.PeopleListCallback {
 
-    var interactor = PeopleListInteractor(PeopleRepositoryImpl())
+    val interactor = PeopleListInteractor(PeopleRepositoryImpl())
 
     override fun getPeopleForPage(page: Int) {
         view?.showLoading()
-        interactor.getpeopleAtPage(page, this)
+        interactor.getPeopleAtPage(page, this)
     }
 
     override fun onPeopleListSuccess(peopleList: PeopleListResult) {
