@@ -1,12 +1,9 @@
 package fr.soat.androidarchikotlin.features.people_detail
 
 import fr.soat.androidarchikotlin.data.model.People
-import fr.soat.androidarchikotlin.data.repository.PeopleRepositoryImpl
 import fr.soat.androidarchikotlin.features.base.BasePresenterImpl
 
-class PeopleDetailPresenter: BasePresenterImpl<PeopleDetailContract.View>(), PeopleDetailContract.Presenter, PeopleDetailInteractor.PeopleDetailCallback {
-
-    val interactor: PeopleDetailInteractor = PeopleDetailInteractor(PeopleRepositoryImpl())
+class PeopleDetailPresenter(val interactor: PeopleDetailInteractor) : BasePresenterImpl<PeopleDetailContract.View>(), PeopleDetailContract.Presenter, PeopleDetailInteractor.PeopleDetailCallback {
 
     override fun getPeopleDetail(peopleId: Int) {
         view?.showLoading()
