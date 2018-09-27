@@ -5,9 +5,7 @@ import fr.soat.androidarchikotlin.data.model.SimplifiedPeople
 import fr.soat.androidarchikotlin.data.repository.PeopleRepositoryImpl
 import fr.soat.androidarchikotlin.features.base.BasePresenterImpl
 
-class PeopleListPresenter: BasePresenterImpl<PeopleListContract.View>(), PeopleListContract.Presenter, PeopleListInteractor.PeopleListCallback {
-
-    val interactor = PeopleListInteractor(PeopleRepositoryImpl())
+class PeopleListPresenter(val interactor: PeopleListInteractor) : BasePresenterImpl<PeopleListContract.View>(), PeopleListContract.Presenter, PeopleListInteractor.PeopleListCallback {
 
     override fun getPeopleForPage(page: Int) {
         view?.showLoading()
