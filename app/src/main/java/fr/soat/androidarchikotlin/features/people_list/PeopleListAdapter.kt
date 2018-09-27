@@ -10,6 +10,7 @@ import fr.soat.androidarchikotlin.data.model.SimplifiedPeople
 
 class PeopleListAdapter : RecyclerView.Adapter<PeopleListAdapter.PeopleListViewHolder>() {
 
+    var onPeopleSelectedCallback : ((people: SimplifiedPeople) -> Unit)? = null
     val items : MutableList<SimplifiedPeople> = ArrayList()
 
     override fun onCreateViewHolder(parent: ViewGroup, p1: Int): PeopleListViewHolder {
@@ -29,6 +30,8 @@ class PeopleListAdapter : RecyclerView.Adapter<PeopleListAdapter.PeopleListViewH
         val people = items[position]
         holder.idTextView.setText(people.id.toString())
         holder.nameTextView.setText(people.name)
+
+        holder.itemView.setOnClickListener { this.onPeopleSelectedCallback?.invoke(people) }
     }
 
     class PeopleListViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {

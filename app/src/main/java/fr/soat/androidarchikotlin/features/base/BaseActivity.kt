@@ -3,6 +3,7 @@ package fr.soat.androidarchikotlin.features.base
 import android.os.Bundle
 import android.os.Handler
 import android.support.v7.app.AppCompatActivity
+import android.widget.Toast
 
 open class BaseActivity : AppCompatActivity(), BaseView {
 
@@ -24,5 +25,9 @@ open class BaseActivity : AppCompatActivity(), BaseView {
 
     override fun hideLoading() {
         mProgressDialogFragment?.dismiss()
+    }
+
+    override fun displayErrorMessage(error: String?) {
+        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
     }
 }

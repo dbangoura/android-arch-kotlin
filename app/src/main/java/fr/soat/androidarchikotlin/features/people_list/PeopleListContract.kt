@@ -8,10 +8,11 @@ interface PeopleListContract {
 
     interface View: BaseView {
         fun updatePeopleList(peopleList: List<SimplifiedPeople>)
-        fun displayErrorMessage(error: String?)
+        fun displayPeopleDetailFor(people: SimplifiedPeople)
     }
 
     interface Presenter: BasePresenter<View> {
         fun getPeopleForPage(page: Int)
+        fun onPeopleSelected(people: SimplifiedPeople)
     }
 }

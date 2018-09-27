@@ -1,11 +1,13 @@
 package fr.soat.androidarchikotlin.features.people_list
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
-import android.widget.Toast
 import fr.soat.androidarchikotlin.R
 import fr.soat.androidarchikotlin.data.model.SimplifiedPeople
 import fr.soat.androidarchikotlin.features.base.BaseActivity
+import fr.soat.androidarchikotlin.features.people_detail.PeopleDetailActivity
+import fr.soat.androidarchikotlin.utils.*
 import kotlinx.android.synthetic.main.activity_main.*
 
 class PeopleListActivity : BaseActivity(), PeopleListContract.View {
@@ -18,6 +20,9 @@ class PeopleListActivity : BaseActivity(), PeopleListContract.View {
         setContentView(R.layout.activity_main)
 
         peopleRecyclerView.layoutManager = LinearLayoutManager(this)
+        adapter.onPeopleSelectedCallback = {
+            presenter.onPeopleSelected(it)
+        }
         peopleRecyclerView.adapter = adapter
     }
 
@@ -36,7 +41,10 @@ class PeopleListActivity : BaseActivity(), PeopleListContract.View {
         adapter.refresh(peopleList)
     }
 
-    override fun displayErrorMessage(error: String?) {
-        Toast.makeText(this, error, Toast.LENGTH_SHORT).show()
+    override fun displayPeopleDetailFor(people: SimplifiedPeople) {
+        val intent = Intent(this, PeopleDetailActivity::class.java)
+        intent.putExtra(PEOPLE_NAME, people.name)
+        intent.putExtra(PEOPLE_ID, people.id)
+        startActivity(intent)
     }
 }

@@ -1,6 +1,7 @@
 package fr.soat.androidarchikotlin.features.people_list
 
 import fr.soat.androidarchikotlin.data.model.PeopleListResult
+import fr.soat.androidarchikotlin.data.model.SimplifiedPeople
 import fr.soat.androidarchikotlin.data.repository.PeopleRepositoryImpl
 import fr.soat.androidarchikotlin.features.base.BasePresenterImpl
 
@@ -21,6 +22,10 @@ class PeopleListPresenter: BasePresenterImpl<PeopleListContract.View>(), PeopleL
     override fun onPeopleListError(error: String?) {
         view?.displayErrorMessage(error)
         view?.hideLoading()
+    }
+
+    override fun onPeopleSelected(people: SimplifiedPeople) {
+        view?.displayPeopleDetailFor(people)
     }
 
 }
